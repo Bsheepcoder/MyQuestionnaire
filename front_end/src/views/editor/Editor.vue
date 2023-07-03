@@ -3,7 +3,7 @@
     <el-header height="70px">
       <div class="editor-header" style="font-size: 25px;display: flex;align-items: center;justify-content: space-between">
         <span style="float: left; ">
-          <i class="el-icon-star-off" style="color: yellow;"></i>
+          <i class="el-icon-star-off" style="color: greenyellow;font-size: 30px" ></i>
           问卷星官网
         </span>
         <div style="display:flex;align-items: center;justify-content:space-between;width:130px">
@@ -13,8 +13,8 @@
                   用户名<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-plus">个人信息</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-check"><span style="cursor: pointer" @click="logout()">退出登录</span></el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-user-solid">个人信息</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-error"><span style="cursor: pointer" @click="logout()">退出登录</span></el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -23,11 +23,11 @@
     <el-container style="background-color: #f7f8fa;">
         <el-aside style="background-color: #ffffff; margin: 20px; width: 250px;border-radius: 10px">
           <el-menu @select="handleMenuSelect" default-active="overview">
-            <el-menu-item index="overview">
+            <el-menu-item index="">
               <i class="el-icon-coin"></i>
               <span class="select">问卷统计</span>
             </el-menu-item>
-            <el-menu-item index="list">
+            <el-menu-item index="overview">
                 <i class="el-icon-coin"></i>
                 <span class="select">问卷列表</span>
             </el-menu-item>

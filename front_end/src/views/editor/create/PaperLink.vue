@@ -1,39 +1,37 @@
 <template>
   <div class="paperlink">
     <div class="paperlink-header">
-      <span style="font-size: 25px">问卷发放</span>
+      <span style="font-size: 30px;font-weight: bold">问卷发放</span>
     </div>
     <div class="paperlink-URL">
-      <span style="display: block; margin-top: 20px">
+      <span style="display: block; margin-top: 20px;font-size: 20px">
         问卷链接 :
+          <a :href="paperURL">{{ paperURL }}</a>
       </span>
-      <div id="paperURL">
-        <span> {{ paperURL }}</span>
+
+    </div>
+      <div style="text-align: left; padding-left: 30px;margin-top: 20px">
+          <el-button
+                  class="copyBtn"
+                  type="primary"
+                  size=""
+                  style="margin-top: 10px"
+                  @click="copyURL()"
+                  icon="el-icon-link"
+                  :data-clipboard-text="paperURL"
+          >
+              复制链接
+          </el-button>
+          <el-button
+                  type="primary"
+                  size=""
+                  @click="browsePaper(paperURL)"
+                  icon="el-icon-view"
+          >
+              预览问卷
+          </el-button>
       </div>
-      <el-button
-        class="copyBtn"
-        type="primary"
-        size="small"
-        style="margin-top: 10px"
-        @click="copyURL()"
-        icon="el-icon-link"
-        :data-clipboard-text="paperURL"
-      >
-        复制链接
-      </el-button>
-    </div>
-    <el-divider />
-    <div style="text-align: left; padding-left: 30px">
-      <el-button
-        type="primary"
-        size="small"
-        @click="browsePaper(paperURL)"
-        icon="el-icon-view"
-      >
-        预览问卷
-      </el-button>
-    </div>
-    <el-divider />
+
   </div>
 </template>
 
@@ -58,7 +56,7 @@ export default {
   methods: {
     copyURL() {
       this.$message({
-        message: '複製成功!',
+        message: '复制成功!',
         type: 'success'
       })
     },

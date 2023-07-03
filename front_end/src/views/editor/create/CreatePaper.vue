@@ -5,13 +5,19 @@
     :before-close="handleClose"
     @close="close()"
     width="30%"
+    style="text-align: left;font-size:30px"
   >
     <div class="questionnaire-name">
-      问卷名称：
+        <div class="title">
+        问卷名称：
+    </div>
       <el-input v-model="title"> </el-input>
     </div>
     <div class="questonnaire-explain">
-      问卷说明：
+        <div class="title">
+            问卷说明：
+        </div>
+
       <el-input
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 4 }"
@@ -91,6 +97,13 @@ export default {
 </script>
 
 <style>
+
+.title{
+    font-size: larger;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
 .questonnaire-explain {
   margin-top: 30px;
 }

@@ -19,19 +19,21 @@
       <el-main class="papers" >
           <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span>！</h1>
           <div v-for="(paper, index) in allPapers" :key="paper.id" style="display:block">
-              <el-card class="paper_card" style="margin-bottom:30px">
+              <el-card class="paper_card" style="">
                   <div slot="header" class="clearfix">
-                      <span style="margin-left: 5px">ID: {{ paper.id }}</span>
-                      <span style="margin-left: 5px">标题: {{ paper.title }}</span>
-                      <label v-if="paper.status === 'INIT'" style="float: right"
-                      >问卷状态：编辑中</label
-                      >
-                      <label v-else-if="paper.status === 'START'" style="float: right">
-                          问卷状态：已发放
-                      </label>
-                      <label v-else-if="paper.status === 'STOP'" style="float: right">
-                          问卷状态：已回收
-                      </label>
+
+                          <span class="id" >ID: {{ paper.id }}</span>
+                          <span class="id" >标题: {{ paper.title }}</span>
+
+                          <label v-if="paper.status === 'INIT'" style="float: right;color: mediumseagreen"
+                          >编辑中</label
+                          >
+                          <label v-else-if="paper.status === 'START'" style="float: right;color: blue">
+                              已发放
+                          </label>
+                          <label v-else-if="paper.status === 'STOP'" style="float: right;color:orange">
+                             已回收
+                          </label>
                   </div>
                   <el-button
                           v-if="paper.status === 'INIT'"
@@ -156,8 +158,17 @@ export default {
 </script>
 
 <style>
+.id{
+    margin-right: 30px;
+    font-size: 20px;
+}
+
 .paper_card {
-  width: 100%;
+    width: 100%;
+    margin-bottom:20px;
+    justify-content: space-between;
+    text-align: left;
+    font-weight: 600;
 }
 
 .like {

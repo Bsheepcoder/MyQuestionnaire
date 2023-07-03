@@ -1,29 +1,45 @@
 <template>
   <div class="create">
     <div class="header">
-      标题：<el-input
-        type="text"
-        placeholder="输入标题"
-        v-model="paperInfo.title"
-        style="max-width: 250px;"
-        @blur="updatePaper()"
-      />
+        新建问卷
     </div>
-    <el-divider/>
-    <span>问卷说明：</span>
-    <el-input
-      type="textarea"
-      :autosize="{ minRows: 2, maxRows: 4 }"
-      placeholder="请输入問卷說明"
-      v-model="paperInfo.description"
-      style="width: 800px; padding-right: 100px"
-      @blur="updatePaper()"
-    >
-    </el-input>
-
     <el-divider />
 
-    <div style="height: 50px; text-align: left; line-height: 50px">
+    <div class="context">
+        <div>
+            <span class="title"> 问卷标题：</span>
+        </div>
+
+        <div>
+            <el-input
+                    type="text"
+                    placeholder="输入标题"
+                    v-model="paperInfo.title"
+                    style="max-width: 250px;"
+                    @blur="updatePaper()"
+            />
+        </div>
+
+    </div>
+    <div class="context">
+        <div>
+      <span class="title" >问卷说明：</span>
+        </div>
+        <div>
+            <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 2, maxRows: 4 }"
+                    placeholder="请输入問卷說明"
+                    v-model="paperInfo.description"
+                    style="width: 800px; padding-right: 100px"
+                    @blur="updatePaper()"
+            >
+            </el-input>
+        </div>
+    </div>
+
+
+    <div class="context" style="height: 40px; text-align: left; line-height: 50px">
       <el-radio v-model="radio" label="1" @change="toggleDatepicker(false)">手动结束收集</el-radio>
       <el-divider direction="vertical"/>
       <el-radio v-model="radio" label="2" @change="toggleDatepicker(true)">开始时间-结束时间</el-radio>
@@ -47,101 +63,130 @@
       <el-form-item
         style="text-align: left"
         ref="questionList"
-        label-width="100px"
         v-for="(ques, index) in questionList"
         :key="index"
       >
-        <el-input
-          type="textarea"
-          placeholder="请输入問題"
-          v-model="ques.title"
-          style="width: 700px; border: 2px solid; display: block"
-        >
-        </el-input>
+
+
         <div v-if="ques.type === 1">
-          <el-tag type="info" style="margin-top: 10px">单选题</el-tag>
-          <el-button
-            style="display: block; margin-top: 10px"
-            type="primary"
-            size="mini"
-            icon="el-icon-plus"
-            @click="addOption(ques)"
-          >
-            新增选项
-          </el-button>
-          <div
-            style="padding-right: 600px; margin-top: 10px;"
-            v-for="(option, index) in ques.options"
-            :key="index"
-          >
-            <el-radio style="display: inline-block" disabled=""></el-radio>
+            <div>
+            <span class="stitle" style="margin-top: 10px"><i class="el-icon-s-claim" style="font-size: 30px;color: blue">单选题</i></span>
+            </div>
+            <span class="stitle" style="margin-top: 10px"> <i class="el-icon-question" style="font-size: 20px;color: mediumseagreen"></i>  问题：</span>
             <el-input
-              style="display: inline-block; width: 200px"
-              v-model="option.content"
-            ></el-input>
-            <el-button
-              type="danger"
-              icon="el-icon-close"
-              circle
-              size="mini"
-              style="margin-left: 5px"
-              @click="removeOption(ques, index)"
+                    type="text"
+                    placeholder="请输入问题"
+                    v-model="ques.title"
+                    style="width: 700px; display: block"
             >
+            </el-input>
+            <span class="stitle" style="margin-top: 10px"> <i class="el-icon-s-opportunity" style="font-size: 20px;color: greenyellow"></i>    回答：</span>
+            <el-button
+                    style="display: block; margin-top: 10px"
+                    type="primary"
+                    size="mini"
+                    icon="el-icon-plus"
+                    @click="addOption(ques)"
+            >
+                新增选项
             </el-button>
-          </div>
+            <div
+                    style="padding-right: 600px; margin-top: 10px;"
+                    v-for="(option, index) in ques.options"
+                    :key="index"
+            >
+                <el-radio style="display: inline-block" disabled="" ></el-radio>
+                <el-input
+                        style="display: inline-block; width: 200px"
+                        v-model="option.content"
+                ></el-input>
+                <el-button
+
+                        type="danger"
+                        icon="el-icon-close"
+                        circle
+                        size="mini"
+                        style="margin-left: 5px"
+                        @click="removeOption(ques, index)"
+                >
+                </el-button>
+            </div>
         </div>
         <div v-else-if="ques.type === 2">
-          <el-tag type="info" style="margin-top: 10px">多选题</el-tag>
-          <el-button
-            style="display: block; margin-top: 10px"
-            type="primary"
-            size="mini"
-            icon="el-icon-plus"
-            @click="addOption(ques)"
-          >
-            新增选项
-          </el-button>
-          <div
-            style="padding-right: 600px;"
-            v-for="(option, index) in ques.options"
-            :key="index"
-          >
-            <el-checkbox
-              style="display: inline-block; margin-right: 10px"
-              disabled=""
-            ></el-checkbox>
+            <div>
+            <span class="stitle" style="margin-top: 10px"><i class="el-icon-s-claim" style="font-size: 30px;color: blue">多选题</i></span>
+            </div>
+                <span class="stitle" style="margin-top: 10px"> <i class="el-icon-question" style="font-size: 20px;color: mediumseagreen"></i>  问题：</span>
             <el-input
-              style="display: inline-block; width: 200px"
-              v-model="option.content"
-            ></el-input>
-            <el-button
-              type="danger"
-              icon="el-icon-close"
-              circle
-              size="mini"
-              style="margin-left: 5px"
-              @click="removeOption(ques, index)"
+                    type="text"
+                    placeholder="请输入问题"
+                    v-model="ques.title"
+                    style="width: 700px; display: block"
             >
+            </el-input>
+            <span class="stitle" style="margin-top: 10px"> <i class="el-icon-s-opportunity" style="font-size: 20px;color: greenyellow"></i>    回答：</span>
+            <el-button
+                    style="display: block; margin-top: 10px"
+                    type="primary"
+                    size="mini"
+                    icon="el-icon-plus"
+                    @click="addOption(ques)"
+            >
+                新增选项
             </el-button>
-          </div>
+            <div
+                    style="padding-right: 600px;"
+                    v-for="(option, index) in ques.options"
+                    :key="index"
+            >
+                <el-checkbox
+                        style="display: inline-block; margin-right: 10px"
+                        disabled=""
+                ></el-checkbox>
+                <el-input
+                        style="display: inline-block; width: 200px"
+                        v-model="option.content"
+                ></el-input>
+                <el-button
+                        type="danger"
+                        icon="el-icon-close"
+                        circle
+                        size="mini"
+                        style="margin-left: 5px"
+                        @click="removeOption(ques, index)"
+                >
+                </el-button>
+            </div>
         </div>
         <div v-else>
-          <div>
-            <el-tag type="info" style="margin-top: 10px">简答题</el-tag>
-          </div>
-          <el-input
-            type="textarea"
-            placeholder="回答"
-            style="display: block; width: 500px; margin:10px 0; padding-right: 400px;"
-          >
-          </el-input>
+            <div>
+                <span class="stitle" style="margin-top: 10px"> <i class="el-icon-s-claim" style="font-size: 30px;color: blue">简答题</i> </span>
+            </div>
+            <span class="stitle" style="margin-top: 10px"> <i class="el-icon-question" style="font-size: 20px;color: mediumseagreen"></i>  问题：</span>
+            <el-input
+                    type="input"
+                    placeholder="请输入问题"
+                    v-model="ques.title"
+                    style="width: 700px;display: block"
+            >
+            </el-input>
+
+            <span class="stitle" style="margin-top: 10px"> <i class="el-icon-s-opportunity" style="font-size: 20px;color: greenyellow"></i>    回答：</span>
+            <el-input
+                    type="textarea"
+                    placeholder="回答"
+                    style="display: block; width: 500px; margin:10px 0; padding-right: 400px;"
+            >
+            </el-input>
         </div>
+
         <div style="display: flex; justify-content: flex-end;">
           <el-button @click="delQues(index)" type="danger">删除</el-button>
           <el-button @click="updQues(index)" type="success">保存</el-button>
           <div style="flex: 0 1 20%"></div>
         </div>
         <el-divider />
+
       </el-form-item>
     </el-form>
     <!--<div style="margin-bottom: 30px; padding-left: 700px; padding-bottom: 30px">
@@ -149,13 +194,12 @@
     </div>-->
     <div style="padding-bottom: 20px">
       <el-button v-if="Listempty" type="success" @click="submitpaper()"
-        >发放问卷 !</el-button
+        ><i class="el-icon-s-promotion" style="font-size: 16px;"> 发放问卷</i></el-button
       >
       <el-divider v-if="Listempty" direction="vertical" />
       <el-dropdown @command="addQues">
         <el-button type="primary"
-          >新增问题<i class="el-icon-arrow-down el-icon--right"></i
-        ></el-button>
+          ><i class="el-icon-circle-plus" style="font-size: 16px"> 新增问题</i> </el-button>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="1">单选</el-dropdown-item>
           <el-dropdown-item command="2" divided>多选</el-dropdown-item>
@@ -372,11 +416,30 @@ export default {
 </script>
 
 <style>
+
+.create{
+    padding: 10px;
+}
+.stitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+.context{
+    display: flex;
+    height: 40px;
+    line-height: 47px;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 40px;
+}
+
+
+
 .header {
   height: 50px;
-  padding: 0 20px;
   line-height: 47px;
-  font-size: 20px;
+  font-size: 30px;
+    font-weight: bold;
   text-align: left;
 }
 

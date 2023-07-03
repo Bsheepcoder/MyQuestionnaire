@@ -1,7 +1,7 @@
 <template>
   <div class='bg'>
     <div class='customer'>
-      <div style="margin-top: 30%" class="title">完成填写！</div>
+      <div style="margin-top: 30%" class="title">已完成填写 </div>
       <el-button type="text" @click="back()">再填一次</el-button>
     </div>
   </div>
