@@ -1,12 +1,12 @@
 <template>
   <el-container class="editor">
     <el-header>
-      <div class="editor-header">
-        <span style="float: left; font-size: 30px">
-          <i class="el-icon-edit"></i>
-          My Questionnaire
+      <div class="editor-header" style="font-size: 25px;">
+        <span style="float: left; ">
+          <i class="el-icon-star-off" style="color: yellow;"></i>
+          问卷星官网
         </span>
-        <span style="float: right;font-size: 30px; cursor: pointer" @click="logout()">登出</span>
+        <span style="float: right;f cursor: pointer" @click="logout()">登出</span>
       </div>
     </el-header>
     <el-container>

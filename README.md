@@ -1,6 +1,3 @@
-# MyQuestionnaire
-
-
 # 基于SpringBoot & Vue的调查问卷系统
 
 ## 前端

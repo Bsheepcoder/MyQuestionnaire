@@ -1,128 +1,147 @@
 <template>
   <div class="login">
-    <el-card class="board" v-show="currentPage === 'login'">
-      <div slot="header">
-        <span class="title">登录</span>
-        <el-button
-          style="float: right; padding: 3px 0"
-          type="text"
-          @click="goto('register')"
-        >新用户？前往注册</el-button>
+
+      <div style="flex: 1;background-color: dodgerblue">
+          <el-image style="width: 100%;height: 100%;"  fit="cover"
+                    src="https://pic3.zhimg.com/c6035f76c410f00f2a1071971d643237_r.jpg?source=1940ef5c"/>
+      </div>
+      <div class="welcome-title" >
+          <div style="font-size: 30px;font-weight: bold">欢迎进入问卷星问卷调查系统</div>
+          <div style="margin-top: 10px">结合数据平台，为客户提供问卷调查、统计研究、问卷共享等优质服务！</div>
       </div>
 
-      <el-form
-        :model="loginForm"
-        status-icon
-        :rules="rules1"
-        ref="loginForm"
-        label-width="80px"
-      >
-        <el-form-item prop="username1">
-          <el-input
-            v-model="loginForm.username1"
-            type="text"
-            placeholder="用户名"
-            prefix-icon="el-icon-user"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            v-model="loginForm.password"
-            type="text"
-            placeholder="密码"
-            prefix-icon="el-icon-lock"
-            show-password
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            style="width: 80%"
-            type="primary"
-            :loading="loginLoading"
-            @click="submitLogin()"
-            >登录</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
-    <el-card class="board" v-show="currentPage === 'register'">
-      <div slot="header">
-        <span class="title">注册</span>
-        <el-button
-          style="float: right; padding: 3px 0"
-          type="text"
-          @click="goto('login')"
-        >
-          已注册？前往登入
-        </el-button>
+      <div class="plane" style="width: 400px;background-color: white;z-index: 1">
+          <el-card class="board" v-show="currentPage === 'login'">
+
+
+              <el-form
+                      :model="loginForm"
+                      status-icon
+                      :rules="rules1"
+                      ref="loginForm"
+              >
+                  <div style="margin-top: 180px;margin-bottom: 10px">
+                      <div style="font-size: 30px">欢迎登录问卷星</div>
+                      <div style="font-size: 14px;margin-top: 10px">在进入系统之前请先输入用户名和密码进行登录</div>
+                  </div>
+                  <el-form-item prop="username1">
+                      <el-input
+                              v-model="loginForm.username1"
+                              type="text"
+                              placeholder="用户名"
+                              prefix-icon="el-icon-user"
+                              autocomplete="off"
+                      ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="password">
+                      <el-input
+                              v-model="loginForm.password"
+                              type="text"
+                              placeholder="密码"
+                              prefix-icon="el-icon-lock"
+                              show-password
+                              autocomplete="off"
+                      ></el-input>
+                      <el-button
+                          style="float: right; padding: 3px 0;margin-top: 10px"
+                          type="text"
+                          @click="goto('register')"
+                      >新用户？前往注册</el-button>
+                  </el-form-item>
+
+                  <el-form-item>
+                      <el-button
+                              style="width: 80%"
+                              type="primary"
+                              :loading="loginLoading"
+                              @click="submitLogin()"
+                      >登录</el-button>
+                  </el-form-item>
+              </el-form>
+          </el-card>
+          <el-card class="board" v-show="currentPage === 'register'">
+              <el-form
+                      :model="registerForm"
+                      status-icon
+                      :rules="rules2"
+                      ref="registerForm"
+              >
+                  <div style="margin-top: 140px;margin-bottom: 10px">
+                      <div style="font-size: 30px">请注册问卷星</div>
+                      <div style="font-size: 14px;margin-top: 10px">请确保您填入的信息正确，并妥善保存</div>
+                  </div>
+                  <el-form-item prop="email">
+                      <el-input
+                              v-model="registerForm.email"
+                              type="text"
+                              placeholder="邮箱"
+                              prefix-icon="el-icon-message"
+                              autocomplete="off"
+                      ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="newUser">
+                      <el-input
+                              v-model="registerForm.newUser"
+                              type="text"
+                              placeholder="用户名"
+                              prefix-icon="el-icon-user"
+                              autocomplete="off"
+                      ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="phoneNum">
+                      <el-input
+                              v-model="registerForm.phoneNum"
+                              type="text"
+                              placeholder="手机号"
+                              prefix-icon="el-icon-phone"
+                              autocomplete="off"
+                      ></el-input>
+
+
+                  </el-form-item>
+                  <el-form-item prop="newPW">
+                      <el-input
+                              v-model="registerForm.newPW"
+                              type="text"
+                              placeholder="密码"
+                              prefix-icon="el-icon-lock"
+                              show-password
+                              autocomplete="off"
+                      ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="confirmPW">
+                      <el-input
+                              v-model="registerForm.confirmPW"
+                              type="text"
+                              placeholder="确认密码"
+                              prefix-icon="el-icon-lock"
+                              show-password
+                              autocomplete="off"
+                      ></el-input>
+                      <el-button
+                          style="float: right; padding: 3px 0;margin-top: 10px"
+                          type="text"
+                          @click="goto('login')"
+                      >
+                          已注册？前往登入
+                      </el-button>
+                  </el-form-item>
+                  <el-form-item>
+                      <el-button
+                              style="width: 80%"
+                              type="primary"
+                              :loading="registerLoading"
+                              @click="submitRegister()"
+                      >注册</el-button>
+                  </el-form-item>
+              </el-form>
+          </el-card>
       </div>
-      <el-form
-        :model="registerForm"
-        status-icon
-        :rules="rules2"
-        ref="registerForm"
-        label-width="80px"
-      >
-        <el-form-item prop="email">
-          <el-input
-            v-model="registerForm.email"
-            type="text"
-            placeholder="邮箱"
-            prefix-icon="el-icon-message"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="newUser">
-          <el-input
-            v-model="registerForm.newUser"
-            type="text"
-            placeholder="用户名"
-            prefix-icon="el-icon-user"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="phoneNum">
-          <el-input
-            v-model="registerForm.phoneNum"
-            type="text"
-            placeholder="手机号"
-            prefix-icon="el-icon-phone"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="newPW">
-          <el-input
-            v-model="registerForm.newPW"
-            type="text"
-            placeholder="密码"
-            prefix-icon="el-icon-lock"
-            show-password
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="confirmPW">
-          <el-input
-            v-model="registerForm.confirmPW"
-            type="text"
-            placeholder="确认密码"
-            prefix-icon="el-icon-lock"
-            show-password
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            style="width: 80%"
-            type="primary"
-            :loading="registerLoading"
-            @click="submitRegister()"
-          >注册</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
   </div>
 </template>
+
+
+
 
 <script>
 import { mapActions } from 'vuex'
@@ -300,14 +319,30 @@ export default {
 </script>
 
 <style scoped>
+
+.login{
+    width: 100vw;height: 100vh;overflow: hidden;display: flex
+}
+
+.plane{
+    width: 400px;
+    text-align: center;
+}
+
 .board {
-  width: 40vw;
-  margin: 10vh auto 0;
-  text-align: left;
+    text-align: center;
+    height: 100%;
 }
 
 .title {
-  font-size: 20px;
-  margin-left: 10%;
+    font-size: 40px;
+}
+
+.welcome-title{
+    position: absolute;
+    bottom:30px;
+    left: 30px;
+    color:white;
+    text-shadow: 0 0 10px black;
 }
 </style>
