@@ -6,14 +6,12 @@
                     src="https://pic3.zhimg.com/c6035f76c410f00f2a1071971d643237_r.jpg?source=1940ef5c"/>
       </div>
       <div class="welcome-title" >
-          <div style="font-size: 30px;font-weight: bold">欢迎进入问卷星问卷调查系统</div>
-          <div style="margin-top: 10px">结合数据平台，为客户提供问卷调查、统计研究、问卷共享等优质服务！</div>
+          <div style="font-size: 40px;font-weight: bold">欢迎进入问卷星问卷调查系统</div>
+          <div style="margin-top: 10px;font-size: 20px;">结合数据平台，为客户提供问卷调查、统计研究、问卷共享等优质服务！</div>
       </div>
 
-      <div class="plane" style="width: 400px;background-color: white;z-index: 1">
+      <div class="plane" style="width: 450px;background-color: white;z-index: 1">
           <el-card class="board" v-show="currentPage === 'login'">
-
-
               <el-form
                       :model="loginForm"
                       status-icon

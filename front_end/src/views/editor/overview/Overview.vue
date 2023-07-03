@@ -1,17 +1,22 @@
 <template>
-  <div> <el-container class="overview">
+  <div>
+      <el-container class="overview" >
+
       <el-header height="30px">
-      <span class="title" style="float: left; font-size: 30px; font-weight: 700"
-      >问卷列表</span>
+          <span class="title" style="float: left; font-size: 30px; font-weight: 700"
+          >问卷列表</span>
           <div>
               <el-button type="primary" style="float: right" @click="createPaper()"
               >新增问卷</el-button
               >
           </div>
       </el-header>
-      <el-divider></el-divider>
 
-      <el-main class="papers">
+      <el-divider>
+        欢迎登录问卷星~
+      </el-divider>
+
+      <el-main class="papers" >
           <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span>！</h1>
           <div v-for="(paper, index) in allPapers" :key="paper.id" style="display:block">
               <el-card class="paper_card" style="margin-bottom:30px">
@@ -86,7 +91,11 @@ export default {
       userId: -1,
       deleteDialogInfo: {
         index: -1
-      }
+      },
+        like: true,
+        value1: 4154.564,
+        value2: 2222,
+        title: '今年的增长',
     }
   },
   mounted() {
@@ -149,5 +158,11 @@ export default {
 <style>
 .paper_card {
   width: 100%;
+}
+
+.like {
+    cursor: pointer;
+    font-size: 25px;
+    display: inline-block;
 }
 </style>

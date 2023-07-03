@@ -50,7 +50,8 @@ const routes = [
         component: () => import('../views/editor/create/PaperLink')
       }
     ]
-  }
+  },
+
 ]
 
 const router = new VueRouter({

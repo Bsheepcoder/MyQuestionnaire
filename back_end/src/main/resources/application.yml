@@ -7,7 +7,6 @@ spring:
     max-active: 200
     max-idle: 20
     min-idle: 10
-
 mybatis:
   mapper-locations: classpath:mapperImpl/*Mapper.xml
   configuration:

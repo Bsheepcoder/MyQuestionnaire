@@ -9,9 +9,7 @@
         @blur="updatePaper()"
       />
     </div>
-
-    <el-divider />
-
+    <el-divider/>
     <span>问卷说明：</span>
     <el-input
       type="textarea"
