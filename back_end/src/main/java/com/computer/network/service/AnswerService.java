@@ -1,10 +1,10 @@
 package com.computer.network.service;
 
-import com.computer.network.vo.AnswerVO;
-import com.computer.network.vo.ResponseVO;
+import com.computer.network.pojo.Answer;
+import com.computer.network.pojo.BaseResponse;
 
 import java.util.List;
 
 public interface AnswerService {
-    ResponseVO addAnswers(List<AnswerVO> answerVOList);
+    BaseResponse addAnswers(List<Answer> answerVOList);
 }

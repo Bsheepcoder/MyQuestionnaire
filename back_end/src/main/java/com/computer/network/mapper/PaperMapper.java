@@ -1,8 +1,7 @@
 package com.computer.network.mapper;
 
 import com.computer.network.enums.PaperStatus;
-import com.computer.network.po.Paper;
-import com.computer.network.vo.PaperVO;
+import com.computer.network.pojo.Paper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -13,17 +12,17 @@ import java.util.List;
 @Repository
 public interface PaperMapper {
 
-    int addPaper(PaperVO paperVO);
+    int addPaper(Paper Paper);
 
-    void updatePaper(PaperVO paperVO);
+    void updatePaper(Paper Paper);
 
-    PaperVO selectByPaperId(int paperId);
+    Paper selectByPaperId(int paperId);
 
     void deletePaper(int paperId);
 
-    List<PaperVO> getUserPapers(int userId);
+    List<Paper> getUserPapers(int userId);
 
-    List<PaperVO> getTimePapers();
+    List<Paper> getTimePapers();
 
     void changeStatus(@Param("paperStatus") PaperStatus paperStatus, @Param("id") int id);
 }

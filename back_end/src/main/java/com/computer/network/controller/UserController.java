@@ -1,8 +1,8 @@
 package com.computer.network.controller;
 
 import com.computer.network.service.UserService;
-import com.computer.network.vo.ResponseVO;
-import com.computer.network.vo.UserVO;
+import com.computer.network.pojo.BaseResponse;
+import com.computer.network.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +13,12 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public ResponseVO addUser(@RequestBody UserVO userVO){
-        return userService.addUser(userVO);
+    public BaseResponse addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
 
     @PostMapping("/login")
-    public ResponseVO login(@RequestBody UserVO userVO){
-        return userService.login(userVO);
+    public BaseResponse login(@RequestBody User user) {
+        return userService.login(user);
     }
 }

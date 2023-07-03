@@ -1,7 +1,6 @@
 package com.computer.network.mapper;
 
-import com.computer.network.po.Question;
-import com.computer.network.vo.QuestionVO;
+import com.computer.network.pojo.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

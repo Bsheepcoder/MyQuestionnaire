@@ -1,6 +1,6 @@
 package com.computer.network.mapper;
 
-import com.computer.network.vo.AnswerVO;
+import com.computer.network.pojo.Answer;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface AnswerMapper {
-    int addAnswer(AnswerVO answerVO);
+    int addAnswer(Answer Answer);
 
-    List<AnswerVO> selectByQuestionId(int questionId);
+    List<Answer> selectByQuestionId(int questionId);
 }

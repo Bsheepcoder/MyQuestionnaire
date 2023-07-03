@@ -1,8 +1,8 @@
 package com.computer.network.controller;
 
 import com.computer.network.service.AnswerService;
-import com.computer.network.vo.AnswerVO;
-import com.computer.network.vo.ResponseVO;
+import com.computer.network.pojo.Answer;
+import com.computer.network.pojo.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ public class AnswerController {
     AnswerService answerService;
 
     @PostMapping("/addAnswers")
-    public ResponseVO addAnswers(@RequestBody List<AnswerVO> answerVOList){
+    public BaseResponse addAnswers(@RequestBody List<Answer> answerVOList) {
         return answerService.addAnswers(answerVOList);
     }
 }

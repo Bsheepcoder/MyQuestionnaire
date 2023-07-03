@@ -1,15 +1,13 @@
 package com.computer.network.service;
 
-import com.computer.network.vo.QuestionVO;
-import com.computer.network.vo.ResponseVO;
-
-import java.util.List;
+import com.computer.network.pojo.Question;
+import com.computer.network.pojo.BaseResponse;
 
 public interface QuestionService {
 
-    ResponseVO addQuestion(Integer paperId);
+    BaseResponse addQuestion(Integer paperId);
 
-    ResponseVO updateQuestion(QuestionVO questionVO);
+    BaseResponse updateQuestion(Question question);
 
-    ResponseVO deleteQuestion(Integer questionId);
+    BaseResponse deleteQuestion(Integer questionId);
 }

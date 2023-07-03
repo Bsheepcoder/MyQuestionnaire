@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.computer.network.mapper.OptionsMapper">
-    <insert id="addOption" parameterType="com.computer.network.vo.OptionsVO">
+    <insert id="addOption" parameterType="com.computer.network.pojo.Options">
         insert into OPTIONS(question_id,sequence,content) values(#{questionId},#{sequence},#{content})
     </insert>
 
-    <select id="findOption" resultType="com.computer.network.po.Options">
+    <select id="findOption" resultType="com.computer.network.pojo.Options">
         select * from OPTIONS where question_id=#{questionId} and sequence=#{sequence}
     </select>
 
-    <update id="updateOption" parameterType="com.computer.network.vo.OptionsVO">
+    <update id="updateOption" parameterType="com.computer.network.pojo.Options">
         update OPTIONS set content=#{content} where question_id=#{questionId} and sequence=#{sequence}
     </update>
 
@@ -18,13 +18,13 @@
         delete from OPTIONS where question_id=#{questionId}
     </delete>
 
-    <select id="selectByQuestionId" resultType="com.computer.network.po.Options">
+    <select id="selectByQuestionId" resultType="com.computer.network.pojo.Options">
         select * from OPTIONS where question_id=#{questionId} order by sequence
     </select>
 
 
 
-<!--    <resultMap id="Options" type="com.example.hotel.po.Options">-->
+<!--    <resultMap id="Options" type="com.example.hotel.pojo.Options">-->
 <!--        <result column="question_id" property="questionId"></result>-->
 <!--        <result column="sequence" property="sequence"></result>-->
 <!--        <result column="content" property="content"></result>-->

@@ -1,12 +1,12 @@
 package com.computer.network.service;
 
-import com.computer.network.vo.ResponseVO;
-import com.computer.network.vo.UserVO;
+import com.computer.network.pojo.BaseResponse;
+import com.computer.network.pojo.User;
 
 
 public interface UserService {
 
-    ResponseVO addUser(UserVO userVO);
+    BaseResponse addUser(User user);
 
-    ResponseVO login(UserVO userVO);
+    BaseResponse login(User user);
 }

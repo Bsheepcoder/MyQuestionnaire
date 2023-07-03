@@ -2,8 +2,8 @@ package com.computer.network.serviceImpl;
 
 import com.computer.network.mapper.UserMapper;
 import com.computer.network.service.UserService;
-import com.computer.network.vo.ResponseVO;
-import com.computer.network.vo.UserVO;
+import com.computer.network.pojo.BaseResponse;
+import com.computer.network.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +15,21 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public ResponseVO addUser(UserVO userVO) {
+    public BaseResponse addUser(User user) {
         try {
-            userMapper.addUser(userVO);
-            return ResponseVO.buildSuccess();
-        }catch (Exception e){
+            userMapper.addUser(user);
+            return BaseResponse.buildSuccess();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ResponseVO.buildFailure(ACCOUNT_EXIST);
+            return BaseResponse.buildFailure(ACCOUNT_EXIST);
         }
     }
 
     @Override
-    public ResponseVO login(UserVO userVO) {
-        UserVO foundUser=userMapper.getUserByName(userVO.getName());
-        if(foundUser==null || !foundUser.getPassword().equals(userVO.getPassword()))
-            return ResponseVO.buildFailure(ACCOUNT_INFO_ERROR);
-        return ResponseVO.buildSuccess(foundUser);
+    public BaseResponse login(User user) {
+        User foundUser = userMapper.getUserByName(user.getName());
+        if (foundUser == null || !foundUser.getPassword().equals(user.getPassword()))
+            return BaseResponse.buildFailure(ACCOUNT_INFO_ERROR);
+        return BaseResponse.buildSuccess(foundUser);
     }
 }

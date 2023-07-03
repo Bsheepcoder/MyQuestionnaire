@@ -1,19 +1,19 @@
 package com.computer.network.service;
 
-import com.computer.network.vo.PaperVO;
-import com.computer.network.vo.ResponseVO;
+import com.computer.network.pojo.Paper;
+import com.computer.network.pojo.BaseResponse;
 
 public interface PaperService {
 
-    ResponseVO addPaper(PaperVO paperVO);
+    BaseResponse addPaper(Paper Paper);
 
-    ResponseVO updatePaper(PaperVO paperVO);
+    BaseResponse updatePaper(Paper Paper);
 
-    ResponseVO deletePaper(int paperId);
+    BaseResponse deletePaper(int paperId);
 
-    ResponseVO getUserPapers(int userId);
+    BaseResponse getUserPapers(int userId);
 
-    ResponseVO checkPaper(int paperId);
+    BaseResponse checkPaper(int paperId);
 
-    ResponseVO reviewPaper(int paperId);
+    BaseResponse reviewPaper(int paperId);
 }

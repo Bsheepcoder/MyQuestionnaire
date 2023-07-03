@@ -3,16 +3,16 @@
 
 
 <mapper namespace="com.computer.network.mapper.AnswerMapper">
-    <insert id="addAnswer" parameterType="com.computer.network.vo.AnswerVO">
+    <insert id="addAnswer" parameterType="com.computer.network.pojo.Answer">
         insert into ANSWER(paper_id,question_id,question_type,create_time,answer_content) values(#{paperId},#{questionId},#{questionType},#{createTime},#{answerContent})
     </insert>
 
-    <select id="selectByQuestionId" resultType="com.computer.network.vo.AnswerVO">
+    <select id="selectByQuestionId" resultType="com.computer.network.pojo.Answer">
         select * from ANSWER where question_id=#{questionId} order by id
     </select>
 
 
-<!--    <resultMap id="AnswerVO" type="com.example.hotel.vo.AnswerVO">-->
+<!--    <resultMap id="AnswerVO" type="com.example.hotel.vo.Answer">-->
 <!--        <result column="id" property="id"></result>-->
 <!--        <result column="question_id" property="questionId"></result>-->
 <!--        <result column="paper_id" property="paperId"></result>-->

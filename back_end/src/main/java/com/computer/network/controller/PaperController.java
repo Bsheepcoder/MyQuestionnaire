@@ -1,8 +1,8 @@
 package com.computer.network.controller;
 
 import com.computer.network.service.PaperService;
-import com.computer.network.vo.PaperVO;
-import com.computer.network.vo.ResponseVO;
+import com.computer.network.pojo.Paper;
+import com.computer.network.pojo.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,32 +13,32 @@ public class PaperController {
     PaperService paperService;
 
     @PostMapping("/addPaper")
-    public ResponseVO addPaper(@RequestBody PaperVO paperVO){
-        return paperService.addPaper(paperVO);
+    public BaseResponse addPaper(@RequestBody Paper Paper) {
+        return paperService.addPaper(Paper);
     }
 
     @PostMapping("/updatePaper")
-    public ResponseVO updatePaper(@RequestBody PaperVO paperVO){
-        return paperService.updatePaper(paperVO);
+    public BaseResponse updatePaper(@RequestBody Paper Paper) {
+        return paperService.updatePaper(Paper);
     }
 
     @GetMapping("/{paperId}/deletePaper")
-    public ResponseVO invalidatePaper(@PathVariable Integer paperId){
+    public BaseResponse invalidatePaper(@PathVariable Integer paperId) {
         return paperService.deletePaper(paperId);
     }
 
     @GetMapping("/{userId}/getUserPapers")
-    public ResponseVO getUserPapers(@PathVariable Integer userId){
+    public BaseResponse getUserPapers(@PathVariable Integer userId) {
         return paperService.getUserPapers(userId);
     }
 
     @GetMapping("/{paperId}/checkPaper")
-    public ResponseVO checkPaper(@PathVariable Integer paperId){
+    public BaseResponse checkPaper(@PathVariable Integer paperId) {
         return paperService.checkPaper(paperId);
     }
 
     @GetMapping("/{paperId}/reviewPaper")
-    public ResponseVO reviewPaper(@PathVariable Integer paperId){
+    public BaseResponse reviewPaper(@PathVariable Integer paperId) {
         return paperService.reviewPaper(paperId);
     }
 }

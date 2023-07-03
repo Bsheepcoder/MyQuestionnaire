@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.computer.network.mapper.QuestionMapper">
-    <insert id="addQuestion" parameterType="com.computer.network.po.Question" useGeneratedKeys="true" keyProperty="id">
+    <insert id="addQuestion" parameterType="com.computer.network.pojo.Question" useGeneratedKeys="true" keyProperty="id">
         insert into QUESTION(paper_id) values(#{paperId})
     </insert>
 
-    <update id="updateQuestion" parameterType="com.computer.network.po.Question">
+    <update id="updateQuestion" parameterType="com.computer.network.pojo.Question">
         update QUESTION set type=#{type},title=#{title} where id=#{id}
     </update>
-    <select id="selectByQuestionId" resultType="com.computer.network.po.Question">
+    <select id="selectByQuestionId" resultType="com.computer.network.pojo.Question">
         select * from QUESTION where id=#{id}
     </select>
 
@@ -20,12 +20,12 @@
         delete from QUESTION where paper_id=#{paperId}
     </delete>
 
-    <select id="selectByPaperId" resultType="com.computer.network.po.Question">
+    <select id="selectByPaperId" resultType="com.computer.network.pojo.Question">
         select * from QUESTION where paper_id=#{paperId} order by id
     </select>
 
 
-<!--    <resultMap id="Question" type="com.example.hotel.po.Question">-->
+<!--    <resultMap id="Question" type="com.example.hotel.pojo.Question">-->
 <!--        <result column="id" property="id"></result>-->
 <!--        <result column="paper_id" property="paperId"></result>-->
 <!--        <result column="type" property="type"></result>-->
