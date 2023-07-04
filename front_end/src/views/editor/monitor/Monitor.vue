@@ -6,13 +6,18 @@
           class="title"
           style="float: left; font-size: 30px; font-weight: 700"
         >
-          统计分析 -- {{ monitorPaper.title }}
+          统计分析
         </div>
       </el-header>
       <el-divider></el-divider>
       <el-main>
         <div class="analyzeTables" :model="monitorPaper">
-          <div style="text-align: left; margin: 5px 0;font-size: 20px;">问卷状态：
+          <div style="text-align: left; margin: 0px 0;font-size: 20px;font-weight: 700">问卷标题：
+              <span style=" font-weight: 450"
+              >        {{ monitorPaper.title }}</span
+              >
+          </div>
+          <div style="text-align: left; margin: 10px 0;font-size: 20px;font-weight: 700">问卷状态：
             <span style=" font-weight: 450"
               >{{
                 { INIT: '编辑中', START: '已发放', STOP: '已回收' }[
@@ -21,7 +26,7 @@
               }}</span
             >
           </div>
-          <div style="text-align: left; margin: 10px 0;font-size: 20px;"> 发放时段：
+          <div style="text-align: left; margin: 10px 0;font-size: 20px;font-weight: 700"> 发放时段：
             <span
               style="font-size: 20px; font-weight: 450"
               v-if="monitorPaper.endTime != null"
@@ -29,7 +34,7 @@
            {{ monitorPaper.startTime }} 至 {{ monitorPaper.endTime }}
             </span>
             <span style="font-size: 20px; font-weight: 450" v-else>
-              发放时段：人工操作
+              手动操作
             </span>
           </div>
 
@@ -89,19 +94,20 @@
           <div
             v-for="(question, index) in monitorPaper.questionStatistics"
             :key="question.id"
+
           >
-            <h1 class="qusetionTitle" style="font-size: 20px; font-weight: 700">
-              第{{ index + 1 }}题  题目: {{ question.title }}
+            <h1 class="qusetionTitle" style="font-size: 24px; font-weight: 700">
+             <i class="el-icon-s-flag" style="color: deepskyblue"></i> 第 {{ index + 1 }} 题   {{ question.title }}
             </h1>
-            <el-tag style="color:rgb(37,124,115);margin-bottom:10px;float:left;font-size: 20px"
-              >填写总数：{{ question.filledInNum }}</el-tag
+            <el-tag style="margin-bottom:10px;float:left;font-size: 20px"
+              >填写人数：{{ question.filledInNum }}</el-tag
             >
             <el-table
               v-if="question.type === 1 || question.type == 2"
               :data="question.optionStatistics"
               border
               stripe
-              style="width:100%; margin-bottom: 10px"
+              style="width:100%; margin-bottom: 5px;font-size: 22px;"
             >
               <el-table-column
                 prop="sequence"
@@ -218,6 +224,11 @@ export default {
 </script>
 
 <style>
+
+el-table{
+    text-align: center;
+}
+
 .questionTitle {
   margin-left: 5px;
   display: inline-block;
