@@ -9,5 +9,4 @@
     <select id="getUserByName" resultType="com.computer.network.pojo.User">
         select * from USER where name=#{name}
     </select>
-
 </mapper>

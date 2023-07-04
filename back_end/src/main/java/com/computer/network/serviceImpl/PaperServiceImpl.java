@@ -22,6 +22,7 @@ import java.util.List;
 public class PaperServiceImpl implements PaperService {
     private final static String EMPTY = "无效ID";
     private final static String USER_EMPTY = "用户未创建任何问卷";
+
     @Autowired
     PaperMapper paperMapper;
     @Autowired

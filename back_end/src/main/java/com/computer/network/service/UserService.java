@@ -9,4 +9,7 @@ public interface UserService {
     BaseResponse addUser(User user);
 
     BaseResponse login(User user);
+
+    BaseResponse information(User user);
+
 }

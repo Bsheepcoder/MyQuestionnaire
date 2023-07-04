@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final static String ACCOUNT_EXIST = "账号已存在";
     private final static String ACCOUNT_INFO_ERROR = "用户名或密码错误";
+
     @Autowired
     UserMapper userMapper;
 
@@ -31,5 +32,10 @@ public class UserServiceImpl implements UserService {
         if (foundUser == null || !foundUser.getPassword().equals(user.getPassword()))
             return BaseResponse.buildFailure(ACCOUNT_INFO_ERROR);
         return BaseResponse.buildSuccess(foundUser);
+    }
+
+    @Override
+    public BaseResponse information(User user){
+        return BaseResponse.buildSuccess(userMapper.getUserByName(user.getName()));
     }
 }
