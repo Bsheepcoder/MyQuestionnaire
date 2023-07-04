@@ -30,6 +30,11 @@ const routes = [
     component: () => import('../views/editor/Editor'),
     children: [
       {
+        path: 'count',
+        name: 'count',
+        component: () => import('../views/editor/count/Count.vue')
+      },
+      {
         path: 'overview',
         name: 'overview',
         component: () => import('../views/editor/overview/Overview')

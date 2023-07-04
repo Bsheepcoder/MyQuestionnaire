@@ -23,20 +23,20 @@
     <el-container style="background-color: #f7f8fa;">
         <el-aside style="background-color: #ffffff; margin: 20px; width: 250px;border-radius: 10px">
           <el-menu @select="handleMenuSelect" default-active="overview">
-            <el-menu-item index="">
-              <i class="el-icon-coin"></i>
-              <span class="select">问卷统计</span>
+            <el-menu-item index="count">
+                <i class="el-icon-coin"></i>
+                <span class="select">问卷统计</span>
             </el-menu-item>
             <el-menu-item index="overview">
-                <i class="el-icon-coin"></i>
-                <span class="select">问卷列表</span>
+                <i class="el-icon-notebook-2"></i>
+                <span class="select">我的问卷</span>
             </el-menu-item>
-          </el-menu>
+        </el-menu>
         </el-aside>
         <el-container style="background-color: #ffffff;margin: 20px;border-radius: 10px">
             <el-main>
-                <router-view></router-view>
-                <CreatePaper></CreatePaper>
+                    <router-view></router-view>
+                    <CreatePaper></CreatePaper>
             </el-main>
         </el-container>
     </el-container>
@@ -64,12 +64,15 @@ export default {
     ...mapActions(['logoutAct']),
     handleMenuSelect(index) {
       if (index === 'overview') {
-        const route = this.$route.path
-        if (route !== '/editor/overview') {
-          this.$router.push({ name: index })
-        }
-      } else if (index === 'create') {
-        this.set_createPaperVisible(true)
+          const route = this.$route.path
+          if (route !== '/editor/overview') {
+            this.$router.push({ name: index })
+          }
+      }else if (index === 'count') {
+          const route = this.$route.path
+          if (route !== '/editor/count') {
+              this.$router.push({ name: 'count' })
+          }
       }
     },
     logout() {
@@ -79,7 +82,6 @@ export default {
           this.$router.go({ name: 'login' })
         }
       })
-      // this.$router.push('/login')
     }
   }
 }
@@ -101,7 +103,7 @@ export default {
 
 .editor-header {
     padding: 10px;
-    margin: 0 0 50px 20px;
+    margin: 5px 0 50px 20px;
 
 }
 

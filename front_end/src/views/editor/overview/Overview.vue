@@ -4,20 +4,18 @@
 
       <el-header height="30px">
           <span class="title" style="float: left; font-size: 30px; font-weight: 700"
-          >问卷列表</span>
+          >我的问卷</span>
           <div>
               <el-button type="primary" style="float: right" @click="createPaper()"
-              >新增问卷</el-button
+              ><i class="el-icon-document-add" style="font-size: 18px" > 新增问卷</i> </el-button
               >
           </div>
       </el-header>
-
       <el-divider>
         欢迎登录问卷星~
       </el-divider>
-
       <el-main class="papers" >
-          <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span>！</h1>
+          <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span></h1>
           <div v-for="(paper, index) in allPapers" :key="paper.id" style="display:block">
               <el-card class="paper_card" style="">
                   <div slot="header" class="clearfix">
@@ -71,11 +69,11 @@
           <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
               <span>确认删除该问卷</span>
               <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="danger" @click="handleDelete()"
-          >确 定</el-button
-          >
-        </span>
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="danger" @click="handleDelete()"
+                >确 定</el-button
+                >
+              </span>
           </el-dialog>
       </el-main>
   </el-container></div>
