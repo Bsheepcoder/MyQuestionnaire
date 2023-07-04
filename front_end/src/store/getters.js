@@ -12,7 +12,10 @@ const getters = {
   monitorPaper: state => state.customer.paperStatistic,
   answers: state => state.customer.answers,
   //Overview 相关
-  allPapers: state => state.paper.paperList
+  allPapers: state => state.paper.paperList,
+  startPapers: state => state.paper.startPaperList,
+  endPapers: state => state.paper.endPaperList,
+  initPapers: state => state.paper.initPaperList,
 }
 
 export default getters

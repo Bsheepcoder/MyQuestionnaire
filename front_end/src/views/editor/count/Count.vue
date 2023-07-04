@@ -6,7 +6,7 @@
                     <span>问卷总数</span>
                 </div>
                 <div class="text item">
-                    {{0 }}
+                    {{allPapers.length}}
                 </div>
             </el-card>
             <el-card class="box-card" style="background-color: dodgerblue">
@@ -14,7 +14,7 @@
                     <span>已发放</span>
                 </div>
                 <div class="text item">
-                    {{0}}
+                    {{startPapers.length}}
                 </div>
             </el-card>
             <el-card class="box-card"  style="background-color: mediumseagreen">
@@ -22,7 +22,7 @@
                     <span>编辑中</span>
                 </div>
                 <div class="text item">
-                    {{0}}
+                    {{initPapers.length}}
                 </div>
             </el-card>
             <el-card class="box-card"  style="background-color: orange">
@@ -30,7 +30,7 @@
                 <span>已结束</span>
             </div>
             <div class="text item">
-                {{0}}
+                {{endPapers.length}}
             </div>
         </el-card>
         </el-container>
@@ -41,20 +41,23 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
-
+    name: 'Count',
     data() {
         return {
-
         }
     },
     mounted() {
-
+        this.getAllPapers()
+        this.getStartPapers()
+        this.getEditPapers()
+        this.getEndPapers()
     },
     computed: {
-
+        ...mapGetters(['allPapers','startPapers','endPapers','initPapers'])
     },
     methods: {
-
+        ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper','getStartPapers','getEndPapers','getEditPapers']),
+        ...mapMutations(['set_createPaperVisible']),
     }
 }
 </script>
@@ -62,8 +65,8 @@ export default {
 <style>
 .text {
     align-items: center;
-    margin-top: 20px;
-    font-size: 40px;
+    margin-top: 10px;
+    font-size:50px;
 }
 
 .item {
@@ -80,12 +83,12 @@ export default {
 }
 
 .box-card {
-    font-weight: bolder;
+    font-weight: normal;
     color: white;
     box-shadow: gray;
     border-radius: 20px;
     width: 100%;
-    margin: 30px;
+    margin: 10px;
     height: 200px;
     font-size: 30px;
 }

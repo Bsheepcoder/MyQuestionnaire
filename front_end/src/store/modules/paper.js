@@ -16,38 +16,13 @@ import {
 const paper = {
   state: {
     paperList: [] /* Paper[] */,
+    startPaperList: [] /* Paper[] */,
+    endPaperList: [] /* Paper[] */,
+    initPaperList: [],
     currentPaper: {
       paperInfo: {} /* Paper */,
       questionList: [
-        /* Question[] */
-        // {
-        //   type: 1, // 單擇
-        //   text: '',
-        //   options: [
-        //     {
-        //       content: ''
-        //     }
-        //   ]
-        // },
-        // {
-        //   type: 3, // 文字
-        //   text: '',
-        //   answer: ''
-        // },
-        // {
-        //   type: 2, // 多選
-        //   text: '',
-        //   options: [
-        //     {
-        //       content: ''
-        //     }
-        //   ]
-        // },
-        // {
-        //   type: 3,
-        //   text: '',
-        //   answer: ''
-        // }
+
       ]
     },
     createPaperVisible: false // show createPaper Component
@@ -55,6 +30,15 @@ const paper = {
   mutations: {
     set_paperList(state, paperList) {
       state.paperList = paperList
+    },
+    set_StartPaperList(state, startPaperList) {
+      state.startPaperList = startPaperList
+    },
+    set_endPaperList(state, endPaperList) {
+      state.endPaperList = endPaperList
+    },
+    set_initPaperList(state, initPaperList) {
+      state.endPaperList = initPaperList
     },
     set_paperInfo(state, paperInfo) {
       state.currentPaper.paperInfo = paperInfo
@@ -75,53 +59,62 @@ const paper = {
       const userId = getters.userInfo.id
       console.log(`get paperList with userId: ${userId}`)
       const res = await getUserPapersAPI(userId)
-      // const res = {
-      //   data: {
-      //     success: true,
-      //     content: [
-      //       {
-      //         paperInfo: {
-      //           id: '123',
-      //           userId: userId,
-      //           title: '问卷一',
-      //           description: '',
-      //           start_time: '5月12日',
-      //           end_time: null,
-      //           status: 1
-      //         },
-      //         questionList: []
-      //       },
-      //       {
-      //         paperInfo: {
-      //           id: '128',
-      //           userId: userId,
-      //           title: '问卷二',
-      //           description: '',
-      //           start_time: '5月18日',
-      //           end_time: null,
-      //           status: 2
-      //         },
-      //         questionList: []
-      //       },
-      //       {
-      //         paperInfo: {
-      //           id: '1289',
-      //           userId: userId,
-      //           title: '问卷三',
-      //           description: '',
-      //           start_time: '5月29日',
-      //           end_time: null,
-      //           status: 1
-      //         },
-      //         questionList: []
-      //       }
-      //     ]
-      //   }
-      // }
+
       if(res && res.data.success) {
         const paperList = res.data.content
         console.log(paperList)
         commit('set_paperList', paperList)
+      }
+    },
+    // 查看已发放用户问卷
+    getStartPapers: async ({ commit, getters }) => {
+      const userId = getters.userInfo.id
+      console.log(`get paperList with userId: ${userId}`)
+      const res = await getUserPapersAPI(userId)
+      if(res && res.data.success) {
+        const paperList = res.data.content
+        const startList= []
+        for(var i in paperList){
+          if(paperList[i].status === 'START'){
+            startList.push(paperList[i])
+          }
+        }
+        console.log(startList)
+        commit('set_StartPaperList', startList)
+      }
+    },
+    // 查看已发放用户问卷
+    getEndPapers: async ({ commit, getters }) => {
+      const userId = getters.userInfo.id
+      console.log(`get paperList with userId: ${userId}`)
+      const res = await getUserPapersAPI(userId)
+      if(res && res.data.success) {
+        const paperList = res.data.content
+        const startList= []
+        for(var i in paperList){
+          if(paperList[i].status === 'STOP'){
+            startList.push(paperList[i])
+          }
+        }
+        console.log(startList)
+        commit('set_endPaperList', startList)
+      }
+    },
+    // 查看正在编辑用户问卷
+    getEditPapers: async ({ commit, getters }) => {
+      const userId = getters.userInfo.id
+      console.log(`get paperList with userId: ${userId}`)
+      const res = await getUserPapersAPI(userId)
+      if(res && res.data.success) {
+        const paperList = res.data.content
+        const List= []
+        for(const i in paperList){
+          if(paperList[i].status === 'INIT'){
+            List.push(i)
+          }
+        }
+        console.log(List)
+        commit('set_initPaperList', List)
       }
     },
     // 创建问卷
@@ -137,18 +130,7 @@ const paper = {
         return false
       }
       const paperInfo = res.data.content
-      // console.log(paperInfo)
-      // const paperInfo = {
-      //   id: Math.floor(Math.random() * 100),
-      //   userId: getters.userInfo.id,
-      //   title: '',
-      //   description: '',
-      //   start_time: null,
-      //   end_time: null,
-      //   status: 1,
-      //   ...paper
-      // }
-      // console.log(paperInfo)
+
       commit('set_paperInfo', paperInfo)
       commit('set_questionList', [])
       return paperInfo.id
@@ -185,12 +167,7 @@ const paper = {
     deletePaper: async({ state }, index) => {
       const targetPaper = state.paperList[index]
       const res = await deletePaperAPI(targetPaper.id)
-      // console.log(res)
-      // const res = {
-      //   data: {
-      //     success: true
-      //   }
-      // }
+
       if(res && res.data.success) {
         // console.log(targetPaper)
         // console.log(index)
@@ -245,14 +222,7 @@ const paper = {
       }
       console.log(ques)
       const res = await updateQuestionAPI(ques)
-      //console.log(ques)
-      /*const res = {
-        data: {
-          success: false,
-          message: '',
-          content: ''
-        }
-      }*/
+
       return res && res.data.success
     },
     // 删除问题

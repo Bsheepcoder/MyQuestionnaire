@@ -17,11 +17,11 @@
       <el-main class="papers" >
           <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span></h1>
           <div v-for="(paper, index) in allPapers" :key="paper.id" style="display:block">
-              <el-card class="paper_card" style="">
+              <el-card class="paper_card" style="border-radius: 12px;margin-right: 10px;margin-left: 10px">
                   <div slot="header" class="clearfix">
 
-                          <span class="id" >ID: {{ paper.id }}</span>
-                          <span class="id" >标题: {{ paper.title }}</span>
+<!--                      <span class="id" ><i class="el-icon-price-tag">{{ paper.id }} </i></span>-->
+                          <span class="id" ><i class="el-icon-caret-right" style="color:mediumspringgreen;"> </i>{{ paper.title }}</span>
 
                           <label v-if="paper.status === 'INIT'" style="float: right;color: mediumseagreen"
                           >编辑中</label
@@ -44,7 +44,7 @@
                   <el-button
                           v-if="paper.status === 'START' || paper.status === 'STOP'"
                           type="text"
-                          style="float: left"
+                          style="float: left;color: green"
                           @click="checkPaperDetail(paper.id)"
                           icon="el-icon-edit"
                   >查看问卷</el-button
@@ -52,14 +52,14 @@
                   <el-button
                           v-if="paper.status === 'START'"
                           type="text"
-                          style="float: left"
+                          style="float: left;"
                           @click="handleShare(paper.id)"
                           icon="el-icon-share"
                   >发放链接</el-button
                   >
                   <el-button
                           type="text"
-                          style="float: left"
+                          style="float: left;color: red"
                           @click="showDeleteDialog(index)"
                           icon="el-icon-delete"
                   >删除问卷</el-button
@@ -162,7 +162,6 @@ export default {
 }
 
 .paper_card {
-    width: 100%;
     margin-bottom:20px;
     justify-content: space-between;
     text-align: left;

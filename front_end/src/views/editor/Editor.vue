@@ -1,12 +1,12 @@
 <template>
   <el-container class="editor" >
-    <el-header height="70px">
-      <div class="editor-header" style="font-size: 25px;display: flex;align-items: center;justify-content: space-between">
+    <el-header height="70px" style="">
+      <div class="editor-header" style="font-size: 25px;display: flex;align-items: center;justify-content: space-between;">
         <span style="float: left; ">
           <i class="el-icon-star-off" style="color: greenyellow;font-size: 30px" ></i>
           问卷星官网
         </span>
-        <div style="display:flex;align-items: center;justify-content:space-between;width:130px">
+        <div style="display:flex;align-items: center;justify-content:space-between;width:130px;">
             <el-avatar size="15"  src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
             <el-dropdown trigger="click" style="font-size: 18px;">
                 <span class="el-dropdown-link">
@@ -22,7 +22,7 @@
     </el-header>
     <el-container style="background-color: #f7f8fa;">
         <el-aside style="background-color: #ffffff; margin: 20px; width: 250px;border-radius: 10px">
-          <el-menu @select="handleMenuSelect" default-active="overview">
+          <el-menu @select="handleMenuSelect" default-active="count">
             <el-menu-item index="count">
                 <i class="el-icon-coin"></i>
                 <span class="select">问卷统计</span>

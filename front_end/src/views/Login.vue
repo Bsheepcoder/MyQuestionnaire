@@ -278,7 +278,7 @@ export default {
               this.$notify.success({
                 title: '登入成功'
               })
-              this.$router.push({ name: 'overview' })
+              this.$router.push({ name: 'count' })
             } else {
               this.$notify.error({
                 title: '登入失败'
