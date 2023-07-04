@@ -38,7 +38,7 @@ const paper = {
       state.endPaperList = endPaperList
     },
     set_initPaperList(state, initPaperList) {
-      state.endPaperList = initPaperList
+      state.initPaperList = initPaperList
     },
     set_paperInfo(state, paperInfo) {
       state.currentPaper.paperInfo = paperInfo
@@ -83,21 +83,21 @@ const paper = {
         commit('set_StartPaperList', startList)
       }
     },
-    // 查看已发放用户问卷
+    // 查看已结束用户问卷
     getEndPapers: async ({ commit, getters }) => {
       const userId = getters.userInfo.id
       console.log(`get paperList with userId: ${userId}`)
       const res = await getUserPapersAPI(userId)
       if(res && res.data.success) {
         const paperList = res.data.content
-        const startList= []
+        const List= []
         for(var i in paperList){
           if(paperList[i].status === 'STOP'){
-            startList.push(paperList[i])
+            List.push(paperList[i])
           }
         }
-        console.log(startList)
-        commit('set_endPaperList', startList)
+        console.log(List)
+        commit('set_endPaperList', List)
       }
     },
     // 查看正在编辑用户问卷
@@ -108,9 +108,9 @@ const paper = {
       if(res && res.data.success) {
         const paperList = res.data.content
         const List= []
-        for(const i in paperList){
+        for(let i in paperList){
           if(paperList[i].status === 'INIT'){
-            List.push(i)
+            List.push(paperList[i])
           }
         }
         console.log(List)

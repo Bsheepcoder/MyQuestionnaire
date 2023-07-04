@@ -1,7 +1,7 @@
 <template>
-    <el-container>
-        <el-container>
-            <el-card class="box-card"  style="color: black" shadow="always">
+    <el-container style="display:block">
+        <div style="display: flex;width: 100%">
+            <el-card class="box-card"  style="background-color: #23d96e" shadow="always">
                 <div slot="header" class="clearfix" >
                     <span>问卷总数</span>
                 </div>
@@ -17,7 +17,7 @@
                     {{startPapers.length}}
                 </div>
             </el-card>
-            <el-card class="box-card"  style="background-color: mediumseagreen">
+            <el-card class="box-card"  style="background-color: #ff3366">
                 <div slot="header" class="clearfix">
                     <span>编辑中</span>
                 </div>
@@ -26,21 +26,55 @@
                 </div>
             </el-card>
             <el-card class="box-card"  style="background-color: orange">
-            <div slot="header" class="clearfix">
-                <span>已结束</span>
-            </div>
-            <div class="text item">
-                {{endPapers.length}}
-            </div>
-        </el-card>
-        </el-container>
+                <div slot="header" class="clearfix">
+                    <span>已结束</span>
+                </div>
+                <div class="text item">
+                    {{endPapers.length}}
+                </div>
+            </el-card>
+        </div>
+        <el-divider></el-divider>
+        <div style="text-align: left;margin-top: 40px">
+          <span style="font-size: 30px"><i class="el-icon-loading" style="font-size: 30px;color: dodgerblue"></i> 正在进行的问卷 </span>
+        </div>
+
+        <div style="text-align: center;border-radius: 10px;box-shadow: 0px 2px 4px 4px #efefef;margin-top: 40px">
+            <el-table
+                :data="startPapers"
+                stripe
+                style="width: 100%;height:100%;font-size: 18px;text-align: center;border-radius: 10px;">
+                <el-table-column
+                    prop="title"
+                    label="标题"
+                    width="330" >
+                </el-table-column>
+                <el-table-column
+                    prop="startTime"
+                    label="开始时间"
+                    width="280">
+                </el-table-column>
+                <el-table-column
+                    prop="endTime"
+                    label="结束时间"
+                    width="280">
+                </el-table-column>
+                <el-table-column
+                    prop="description"
+                    label="描述">
+                </el-table-column>
+            </el-table>
+        </div>
     </el-container>
+
+
 </template>
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
+
     name: 'Count',
     data() {
         return {
@@ -53,12 +87,14 @@ export default {
         this.getEndPapers()
     },
     computed: {
-        ...mapGetters(['allPapers','startPapers','endPapers','initPapers'])
+        ...mapGetters(['allPapers','startPapers','initPapers','endPapers'])
     },
     methods: {
-        ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper','getStartPapers','getEndPapers','getEditPapers']),
+        ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper','getStartPapers','getEditPapers','getEndPapers']),
         ...mapMutations(['set_createPaperVisible']),
     }
+
+
 }
 </script>
 
@@ -84,11 +120,11 @@ export default {
 
 .box-card {
     font-weight: normal;
-    color: white;
+    color: #ffffff;
     box-shadow: gray;
     border-radius: 20px;
     width: 100%;
-    margin: 10px;
+    margin: 20px;
     height: 200px;
     font-size: 30px;
 }

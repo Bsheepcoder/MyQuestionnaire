@@ -6,6 +6,8 @@
                     src="https://pic3.zhimg.com/c6035f76c410f00f2a1071971d643237_r.jpg?source=1940ef5c"/>
       </div>
       <div class="welcome-title" >
+
+
           <div style="font-size: 40px;font-weight: bold">欢迎进入问卷星问卷调查系统</div>
           <div style="margin-top: 10px;font-size: 20px;">结合数据平台，为客户提供问卷调查、统计研究、问卷共享等优质服务！</div>
       </div>
@@ -19,6 +21,8 @@
                       ref="loginForm"
               >
                   <div style="margin-top: 180px;margin-bottom: 10px">
+                      <el-image style="flex: 0;"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW4DjPmsrsn3JWEHud2B8vydx5FLXVxbrSGbD1Gj97KA&s"/>
                       <div style="font-size: 30px">欢迎登录问卷星</div>
                       <div style="font-size: 14px;margin-top: 10px">在进入系统之前请先输入用户名和密码进行登录</div>
                   </div>

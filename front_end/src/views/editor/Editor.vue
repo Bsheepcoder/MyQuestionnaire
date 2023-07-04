@@ -33,7 +33,7 @@
             </el-menu-item>
         </el-menu>
         </el-aside>
-        <el-container style="background-color: #ffffff;margin: 20px;border-radius: 10px">
+        <el-container style="background-color: #ffffff;margin: 20px;border-radius: 10px;">
             <el-main>
                     <router-view></router-view>
                     <CreatePaper></CreatePaper>

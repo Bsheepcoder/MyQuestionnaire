@@ -14,13 +14,14 @@
       <el-divider>
         欢迎登录问卷星~
       </el-divider>
-      <el-main class="papers" >
+      <el-main class="papers"  style="text-align: center;display: flex;height: 100%">
           <h1 v-if="allPapers.length === 0"> 无问卷信息，点击<span @click="createPaper()" style="cursor: pointer; color: blue;">新增问卷</span></h1>
-          <div v-for="(paper, index) in allPapers" :key="paper.id" style="display:block">
-              <el-card class="paper_card" style="border-radius: 12px;margin-right: 10px;margin-left: 10px">
-                  <div slot="header" class="clearfix">
+          <div class="plane">
+              <div v-for="(paper, index) in startPapers" :key="paper.id" style="display:block">
+                  <el-card class="paper_card" style="border-radius: 12px;">
+                      <div slot="header" class="clearfix">
 
-<!--                      <span class="id" ><i class="el-icon-price-tag">{{ paper.id }} </i></span>-->
+                          <!--                      <span class="id" ><i class="el-icon-price-tag">{{ paper.id }} </i></span>-->
                           <span class="id" ><i class="el-icon-caret-right" style="color:mediumspringgreen;"> </i>{{ paper.title }}</span>
 
                           <label v-if="paper.status === 'INIT'" style="float: right;color: mediumseagreen"
@@ -30,42 +31,148 @@
                               已发放
                           </label>
                           <label v-else-if="paper.status === 'STOP'" style="float: right;color:orange">
-                             已回收
+                              已回收
                           </label>
-                  </div>
-                  <el-button
-                          v-if="paper.status === 'INIT'"
-                          type="text"
-                          style="float: left"
-                          @click="editPaper(paper.id)"
-                          icon="el-icon-edit"
-                  >继续编辑</el-button
-                  >
-                  <el-button
-                          v-if="paper.status === 'START' || paper.status === 'STOP'"
-                          type="text"
-                          style="float: left;color: green"
-                          @click="checkPaperDetail(paper.id)"
-                          icon="el-icon-edit"
-                  >查看问卷</el-button
-                  >
-                  <el-button
-                          v-if="paper.status === 'START'"
-                          type="text"
-                          style="float: left;"
-                          @click="handleShare(paper.id)"
-                          icon="el-icon-share"
-                  >发放链接</el-button
-                  >
-                  <el-button
-                          type="text"
-                          style="float: left;color: red"
-                          @click="showDeleteDialog(index)"
-                          icon="el-icon-delete"
-                  >删除问卷</el-button
-                  >
-              </el-card>
+                      </div>
+                      <el-button
+                              v-if="paper.status === 'INIT'"
+                              type="text"
+                              style="float: left"
+                              @click="editPaper(paper.id)"
+                              icon="el-icon-edit"
+                      >继续编辑</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START' || paper.status === 'STOP'"
+                              type="text"
+                              style="float: left;color: green"
+                              @click="checkPaperDetail(paper.id)"
+                              icon="el-icon-edit"
+                      >查看问卷</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START'"
+                              type="text"
+                              style="float: left;"
+                              @click="handleShare(paper.id)"
+                              icon="el-icon-share"
+                      >发放链接</el-button
+                      >
+                      <el-button
+                              type="text"
+                              style="float: left;color: red"
+                              @click="showDeleteDialog(index)"
+                              icon="el-icon-delete"
+                      >删除问卷</el-button
+                      >
+                  </el-card>
+              </div>
           </div>
+          <div  class="plane">
+              <div v-for="(paper, index) in initPapers" :key="paper.id" style="display:block;">
+                  <el-card class="paper_card" style="border-radius: 12px;">
+                      <div slot="header" class="clearfix">
+
+                          <!--                      <span class="id" ><i class="el-icon-price-tag">{{ paper.id }} </i></span>-->
+                          <span class="id" ><i class="el-icon-caret-right" style="color:mediumspringgreen;"> </i>{{ paper.title }}</span>
+
+                          <label v-if="paper.status === 'INIT'" style="float: right;color: mediumseagreen"
+                          >编辑中</label
+                          >
+                          <label v-else-if="paper.status === 'START'" style="float: right;color: blue">
+                              已发放
+                          </label>
+                          <label v-else-if="paper.status === 'STOP'" style="float: right;color:orange">
+                              已回收
+                          </label>
+                      </div>
+                      <el-button
+                              v-if="paper.status === 'INIT'"
+                              type="text"
+                              style="float: left;"
+                              @click="editPaper(paper.id)"
+                              icon="el-icon-edit"
+                      >继续编辑</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START' || paper.status === 'STOP'"
+                              type="text"
+                              style="float: left;color: green"
+                              @click="checkPaperDetail(paper.id)"
+                              icon="el-icon-edit"
+                      >查看问卷</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START'"
+                              type="text"
+                              style="float: left;"
+                              @click="handleShare(paper.id)"
+                              icon="el-icon-share"
+                      >发放链接</el-button
+                      >
+                      <el-button
+                              type="text"
+                              style="float: left;color: red"
+                              @click="showDeleteDialog(index)"
+                              icon="el-icon-delete"
+                      >删除问卷</el-button
+                      >
+                  </el-card>
+              </div>
+          </div >
+          <div  class="plane">
+              <div v-for="(paper, index) in endPapers" :key="paper.id" style="display:block">
+                  <el-card class="paper_card" style="border-radius: 12px;">
+                      <div slot="header" class="clearfix">
+
+                          <!--                      <span class="id" ><i class="el-icon-price-tag">{{ paper.id }} </i></span>-->
+                          <span class="id" ><i class="el-icon-caret-right" style="color:mediumspringgreen;"> </i>{{ paper.title }}</span>
+
+                          <label v-if="paper.status === 'INIT'" style="float: right;color: mediumseagreen"
+                          >编辑中</label
+                          >
+                          <label v-else-if="paper.status === 'START'" style="float: right;color: blue">
+                              已发放
+                          </label>
+                          <label v-else-if="paper.status === 'STOP'" style="float: right;color:orange">
+                              已回收
+                          </label>
+                      </div>
+                      <el-button
+                              v-if="paper.status === 'INIT'"
+                              type="text"
+                              style="float: left"
+                              @click="editPaper(paper.id)"
+                              icon="el-icon-edit"
+                      >继续编辑</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START' || paper.status === 'STOP'"
+                              type="text"
+                              style="float: left;color: green"
+                              @click="checkPaperDetail(paper.id)"
+                              icon="el-icon-edit"
+                      >查看问卷</el-button
+                      >
+                      <el-button
+                              v-if="paper.status === 'START'"
+                              type="text"
+                              style="float: left;"
+                              @click="handleShare(paper.id)"
+                              icon="el-icon-share"
+                      >发放链接</el-button
+                      >
+                      <el-button
+                              type="text"
+                              style="float: left;color: red"
+                              @click="showDeleteDialog(index)"
+                              icon="el-icon-delete"
+                      >删除问卷</el-button
+                      >
+                  </el-card>
+              </div>
+          </div>
+
           <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
               <span>确认删除该问卷</span>
               <span slot="footer" class="dialog-footer">
@@ -76,7 +183,9 @@
               </span>
           </el-dialog>
       </el-main>
-  </el-container></div>
+
+      </el-container>
+  </div>
 
 </template>
 
@@ -101,12 +210,16 @@ export default {
   mounted() {
     // console.log('mounted')
     this.getAllPapers()
+    this.getAllPapers()
+    this.getStartPapers()
+    this.getEditPapers()
+    this.getEndPapers()
   },
   computed: {
-    ...mapGetters(['allPapers'])
+      ...mapGetters(['allPapers','startPapers','initPapers','endPapers'])
   },
   methods: {
-    ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper']),
+      ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper','getStartPapers','getEditPapers','getEndPapers']),
     ...mapMutations(['set_createPaperVisible']),
     createPaper() {
       // console.log(this.set_createPaperVisible)
@@ -157,7 +270,7 @@ export default {
 
 <style>
 .id{
-    margin-right: 30px;
+    margin-right: 10px;
     font-size: 20px;
 }
 
@@ -166,11 +279,17 @@ export default {
     justify-content: space-between;
     text-align: left;
     font-weight: 600;
+    width: 480px;
+    font-size: 20px;
 }
 
 .like {
-    cursor: pointer;
+    //cursor: pointer;
     font-size: 25px;
-    display: inline-block;
+    //display: inline-block;
+}
+
+.plane{
+    margin: 10px;
 }
 </style>
