@@ -34,8 +34,4 @@ public class UserServiceImpl implements UserService {
         return BaseResponse.buildSuccess(foundUser);
     }
 
-    @Override
-    public BaseResponse information(User user){
-        return BaseResponse.buildSuccess(userMapper.getUserByName(user.getName()));
-    }
 }

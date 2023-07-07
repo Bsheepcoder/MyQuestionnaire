@@ -32,6 +32,12 @@ public class PaperController {
         return paperService.getUserPapers(userId);
     }
 
+    @GetMapping("/{userId}/getUserPapersCount")
+    public BaseResponse getUserPapersCount(@PathVariable Integer userId) {
+        return paperService.getUserPapersCount(userId);
+    }
+
+
     @GetMapping("/{paperId}/checkPaper")
     public BaseResponse checkPaper(@PathVariable Integer paperId) {
         return paperService.checkPaper(paperId);
@@ -41,4 +47,7 @@ public class PaperController {
     public BaseResponse reviewPaper(@PathVariable Integer paperId) {
         return paperService.reviewPaper(paperId);
     }
+
+
+
 }

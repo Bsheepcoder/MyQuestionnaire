@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://sh-cynosdbmysql-grp-79oxl8wg.sql.tencentcdb.com:27891/test1
     username: root
-    password:
+    password: Happy008
     driver-class-name: com.mysql.cj.jdbc.Driver
     max-active: 200
     max-idle: 20

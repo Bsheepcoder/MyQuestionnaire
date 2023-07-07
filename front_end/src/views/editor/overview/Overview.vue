@@ -200,11 +200,7 @@ export default {
       userId: -1,
       deleteDialogInfo: {
         index: -1
-      },
-        like: true,
-        value1: 4154.564,
-        value2: 2222,
-        title: '今年的增长',
+      }
     }
   },
   mounted() {
@@ -222,7 +218,6 @@ export default {
       ...mapActions(['getAllPapers', 'deletePaper', 'editOldPaper','getStartPapers','getEditPapers','getEndPapers']),
     ...mapMutations(['set_createPaperVisible']),
     createPaper() {
-      // console.log(this.set_createPaperVisible)
       this.set_createPaperVisible(true)
     },
     checkPaperDetail(paperId) {

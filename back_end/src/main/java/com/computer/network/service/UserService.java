@@ -10,6 +10,4 @@ public interface UserService {
 
     BaseResponse login(User user);
 
-    BaseResponse information(User user);
-
 }

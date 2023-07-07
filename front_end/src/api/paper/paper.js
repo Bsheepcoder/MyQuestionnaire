@@ -12,6 +12,16 @@ export function getUserPapersAPI(userId) {
     })
 }
 
+
+export function getUserPapersCountAPI(userId) {
+    return axios({
+        url: `${api.paperPre}/${userId}/getUserPapersCount`,
+        method: 'GET',
+    })
+}
+
+
+
 // 查看完整问卷
 export function checkPaperAPI(paperId) {
     return axios({

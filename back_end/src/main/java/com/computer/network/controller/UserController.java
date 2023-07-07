@@ -22,8 +22,5 @@ public class UserController {
         return userService.login(user);
     }
 
-    @PostMapping("/information")
-    public BaseResponse information(@RequestBody User user) {
-        return userService.information(user);
-    }
+
 }

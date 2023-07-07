@@ -13,6 +13,8 @@ public interface PaperService {
 
     BaseResponse getUserPapers(int userId);
 
+    BaseResponse getUserPapersCount(int userId);
+
     BaseResponse checkPaper(int paperId);
 
     BaseResponse reviewPaper(int paperId);

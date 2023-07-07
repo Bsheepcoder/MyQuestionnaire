@@ -101,6 +101,7 @@ public class PaperServiceImpl implements PaperService {
     public BaseResponse getUserPapers(int userId) {
         try {
             List<Paper> paperVOList = paperMapper.getUserPapers(userId);
+
             if (paperVOList == null)
                 return BaseResponse.buildFailure(USER_EMPTY);
             else
@@ -109,6 +110,22 @@ public class PaperServiceImpl implements PaperService {
             System.out.println(e);
             return BaseResponse.buildFailure(e.getMessage());
         }
+    }
+
+    @Override
+    public BaseResponse getUserPapersCount(int userId){
+        try{
+            List<Paper> paperVOList = paperMapper.getUserPapers(userId);
+            if(paperVOList == null)
+                return BaseResponse.buildFailure("0");
+            else
+                return BaseResponse.buildSuccess("" + paperVOList.size());
+        } catch (Exception e){
+            System.out.println(e);
+            return BaseResponse.buildFailure(e.getMessage());
+        }
+
+
     }
 
     @Override
